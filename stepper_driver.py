@@ -2,31 +2,33 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-class Stepper(): # Stepper object with its driver
+class Stepper():# Stepper object with its driver
     def __init__(self, pins):
-        GPIO.setmode(GPIO.BOARD) # GPIO pin configuration according to their position
         self.pins = pins
-        GPIO.setup(pins, GPIO.OUT)
+        self.cycle_step = 515
         self.phases = ((1,0,0,0),
                        (1,1,0,0),
                        (0,1,1,0),
                        (0,0,1,0),
                        (0,0,1,1),
                        (0,0,0,1),
-                       (1,0,0,1),
-                       (0,0,0,0)) 
+                       (1,0,0,1))
 
-    def rotate(self, cycles, direction, speed):
-        if direction == 'ccw':
-            for cycle in range(cycles*510):
-                for phase in range(8):
+    def rotate(self, cycles, direction):
+        GPIO.setmode(GPIO.BOARD) # GPIO pin configuration according to their position
+        GPIO.setup(self.pins, GPIO.OUT, initial= GPIO.LOW)
+        sleep_time = 0.00085
+        total_step = (self.cycle_step)*cycles
+        for step in range(total_step):
+            for phase in range(7):
+                if direction == 'ccw':
                     GPIO.output(self.pins, self.phases[phase])
-                    sleep(0.0019-(speed*0.00001))
-        if direction == 'cw':
-            for cycle in range(cycles*510):
-                for phase in range(8):
+                    sleep(sleep_time)
+                if direction == 'cw':
                     GPIO.output(self.pins, self.phases[-phase])
-                    sleep(0.0019-(speed*0.00001))
+                    sleep(sleep_time)
+            if step  == (total_step-1):
+                GPIO.cleanup()
 
     def cleanws(self):
         GPIO.cleanup()
