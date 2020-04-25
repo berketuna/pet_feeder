@@ -1,1 +1,1 @@
-This is a fun project developed by me for my own dog. Right after I test basic functionality, Iwill add more features to project. Currently I am testing the mechanical parts, printablity, ease of assembly and functionality.
+This is a fun project developed by me for my own dog. Right after I test basic functionality, I will add more features to project. Currently I am testing the mechanical parts, printablity, ease of assembly and functionality.
