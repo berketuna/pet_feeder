@@ -1,0 +1,4 @@
+./part_drawings/step/*
+./__pycache__
+./stepper_driver.pyc
+./part_drawings/freecad/*.FCStd1
