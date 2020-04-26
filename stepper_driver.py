@@ -8,12 +8,12 @@ class Stepper():# Stepper object with its driver
         self.cycle_step = 515 #Number of steps needed for stepper motor to
                               # approximately rotate 360 degrees  
         self.sleep_time = 0.002# How fast the steps initiate after one another. Keep as is.
-        self.phases = ((1,0,0,0), #
-                       (1,1,0,0), # 
+        self.phases = ((1,1,0,0), #
+                       (1,1,1,0), # 
                        (0,1,1,0), #
-                       (0,0,1,0), # High pin timing to drive the 4-input stepper driver
+                       (0,1,1,1), # High pin timing to drive the 4-input stepper driver
                        (0,0,1,1), #
-                       (0,0,0,1), #
+                       (1,0,1,1), #
                        (1,0,0,1)) #
 
     def rotate(self, cycles, direction):
