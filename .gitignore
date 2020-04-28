@@ -2,3 +2,4 @@ part_drawings/step/
 __pycache__*
 *.pyc
 part_drawings/freecad/*.FCStd1
+.venv
