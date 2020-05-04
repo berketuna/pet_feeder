@@ -17,22 +17,17 @@ Stepper motor = Stepper(stepsPerRevolution, 9, 11, 10, 12);
 void setup() {
   // Set the speed:
   motor.setSpeed(15);
-  
+  pinMode(A0,INPUT_PULLUP);
   // Begin Serial communication at a baud rate of 9600:
   Serial.begin(9600);
 }
 
 void loop() {
   // Step one revolution in one direction:
-  if (Serial.available()){
-    command = Serial.parseInt();
-    if (command == 1){
-      Serial.println("Turning clockwise");
+int button = analogRead(A0);
+//Serial.println(button);
+  if (button > 1020){
       motor.step(stepsPerRevolution);
     }
-    if (command == -1){
-      Serial.println("Turning counterclockwise");
-      motor.step(-stepsPerRevolution);
-    }
+delay(200);
   }
-}
