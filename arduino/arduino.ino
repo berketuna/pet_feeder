@@ -4,7 +4,7 @@
 // Define number of steps per rotation:
 const int stepsPerRevolution = 2048;
 int command;
-
+int button;
 // Wiring:
 // Pin 9  to IN1 on the ULN2003 driver
 // Pin 10 to IN2 on the ULN2003 driver
@@ -24,10 +24,10 @@ void setup() {
 
 void loop() {
   // Step one revolution in one direction:
-int button = analogRead(A0);
-//Serial.println(button);
-  if (button > 1020){
-      motor.step(stepsPerRevolution);
-    }
-delay(200);
-  }
+button = digitalRead(A0);
+Serial.println(button);
+	if (button == 1){
+    	motor.step(stepsPerRevolution);
+	}
+delay(100);
+}
